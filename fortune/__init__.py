@@ -17,11 +17,12 @@ else:
 
 __all__ = ['Fortune']
 
-__version__ = '1.0'
-__author__ = 'German Mendez Bravo (Kronuz), Brian M. Clapper'
-__email__ = 'german.mb@gmail.com'
-__copyright__ = '2018 German Mendez Bravo (Kronuz), 2008-2011 Brian M. Clapper'
-__license__ = 'BSD-style license'
+__version__ = "1.0.0"
+__author__ = "German Mendez Bravo (Kronuz), Brian M. Clapper"
+__email__ = "german.mb@gmail.com, bmc@clapper.org"
+__url__ = "https://github.com/Kronuz/python-fortune"
+__copyright__ = "2018 German Mendez Bravo (Kronuz), 2008-2011 Brian M. Clapper"
+__license__ = "BSD-style license"
 
 
 FORTUNE_FILE = os.path.join(os.path.dirname(__file__), 'fortunes')
