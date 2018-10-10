@@ -3,7 +3,7 @@
 ## Introduction
 
 `fortunate` is a stripped-down implementation of the classic BSD Unix
-`fortunate` command. It combines the capabilities of the `strfile` command
+`fortune` command. It combines the capabilities of the `strfile` command
 (which produces the fortune index file) and the `fortunate` command (which
 displays a random fortune). It reads the traditional `fortunate` program's
 text file format.
