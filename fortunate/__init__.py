@@ -180,7 +180,9 @@ def main():
             print("fortune, version %s" % __version__)
         else:
             generator = Fortunate(fortune_files, verbose=options.verbose, force_update=options.update)
-            for _ in range(options.num):
+            for i, _ in enumerate(range(options.num)):
+                if i:
+                    sys.stdout.write("%\n")
                 sys.stdout.write(generator())
     except ValueError as msg:
         print(msg, file=sys.stderr)
