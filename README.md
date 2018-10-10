@@ -2,10 +2,10 @@
 
 ## Introduction
 
-`fortune` is a stripped-down implementation of the classic BSD Unix
-`fortune` command. It combines the capabilities of the `strfile` command
-(which produces the fortune index file) and the `fortune` command (which
-displays a random fortune). It reads the traditional `fortune` program's
+`fortunate` is a stripped-down implementation of the classic BSD Unix
+`fortunate` command. It combines the capabilities of the `strfile` command
+(which produces the fortune index file) and the `fortunate` command (which
+displays a random fortune). It reads the traditional `fortunate` program's
 text file format.
 
 This repository contains a *fortune cookie database*. It contains more than
@@ -16,7 +16,7 @@ This repository contains a *fortune cookie database*. It contains more than
 
 When used as a command line tool:
 
-    Usage: fortune [OPTIONS] [fortune_files ...]
+    Usage: fortunate [OPTIONS] [fortune_files ...]
 
     Options:
     -h, --help     show this help message and exit
@@ -25,15 +25,15 @@ When used as a command line tool:
     -V, --version  show version and exit.
     -n NUM         number of fortune cookies to show
 
-If you omit the fortune files/paths, `fortune` looks at the `FORTUNE_FILE`
-environment variable. If that environment variable isn't set, `fortune`
+If you omit the fortune files/paths, `fortunate` looks at the `FORTUNE_FILE`
+environment variable. If that environment variable isn't set, `fortunate`
 looks in `/usr/local/share/games/fortunes`, otherwise, it aborts.
 
 When used as a Python library:
 
 ```python
-from fortune import Fortune
-generator = Fortune('/path/to/fortunes')
+from fortunate import Fortunate
+generator = Fortunate('/path/to/fortunes')
 print(generator())
 ```
 
@@ -62,30 +62,30 @@ character. For example:
 
 ## The Index File
 
-For efficiency and speed, `fortune` uses an index file to store the offsets
+For efficiency and speed, `fortunate` uses an index file to store the offsets
 and lengths of every fortune in the text fortune file. So, before you can use
-`fortune` to read a random fortune, you have to generate the data file. With
-the traditional BSD `fortune` program, you used the _strfile_(8) command
+`fortunate` to read a random fortune, you have to generate the data file. With
+the traditional BSD `fortunate` program, you used the _strfile_(8) command
 to generate the index. With _this_ fortune program, however, you the indexes
-are automatically generated in the user's home directory, inside `~/.fortune`.
+are automatically generated in the user's home directory, inside `~/.fortunate`.
 
-You should run `fortune -u` whenever you change the text fortune file(s),
+You should run `fortunate -u` whenever you change the text fortune file(s),
 so a new index can be generated.
 
 
 ## Generating a Random Fortune
 
-You can generate a random fortune simply by running the `fortune` utility
+You can generate a random fortune simply by running the `fortunate` utility
 with the path to your text fortunes file:
 
 ```sh
-fortune /path/to/fortunes
+fortunate /path/to/fortunes
 ```
 
 
 ## Differences
 
-This version of `fortune` does not provide some of the more advanced
+This version of `fortunate` does not provide some of the more advanced
 capabilities of the original BSD program. For instance, it lacks:
 
 - the ability to mark offensive and inoffensive fortunes
@@ -130,6 +130,6 @@ This is free software, released under the following BSD-like license:
     ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
 
-This fortune file database is provided under the Creative Commons Attribution
+This fortunes file database is provided under the Creative Commons Attribution
 4.0 International License. For details, please see
 <http://creativecommons.org/licenses/by/4.0/legalcode>.

@@ -7,7 +7,7 @@ except ImportError:
 
 import os
 
-from fortune import __version__, __author__, __email__, __url__, __license__
+from fortunate import __version__, __author__, __email__, __url__, __license__
 
 
 def read(fname):
@@ -19,7 +19,7 @@ def read(fname):
 
 
 setup(
-    name="python-fortune",
+    name="fortunate",
     version=__version__,
     author=__author__,
     author_email=__email__,
@@ -36,11 +36,11 @@ setup(
         "Programming Language :: Python",
         "Topic :: Text Processing :: Filters",
     ],
-    packages=['fortune'],
-    package_data={'fortune': ['fortunes']},
+    packages=['fortunate'],
+    package_data={'fortunate': ['fortunes']},
     entry_points={
         'console_scripts': [
-            'pyfortune = fortune.__init__:main'
+            'fortunate = fortunate.__init__:main'
         ]
     },
 )

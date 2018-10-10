@@ -15,12 +15,12 @@ else:
     string = str
 
 
-__all__ = ['Fortune']
+__all__ = ['Fortunate']
 
 __version__ = "1.0.0"
 __author__ = "German Mendez Bravo (Kronuz), Brian M. Clapper"
 __email__ = "german.mb@gmail.com, bmc@clapper.org"
-__url__ = "https://github.com/Kronuz/python-fortune"
+__url__ = "https://github.com/Kronuz/fortunate"
 __copyright__ = "2018 German Mendez Bravo (Kronuz), 2008-2011 Brian M. Clapper"
 __license__ = "BSD-style license"
 
@@ -28,7 +28,7 @@ __license__ = "BSD-style license"
 FORTUNE_FILE = os.path.join(os.path.dirname(__file__), 'fortunes')
 
 
-class Fortune(object):
+class Fortunate(object):
     rot13 = string.maketrans("ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz", "NOPQRSTUVWXYZnopqrstuvwxyzABCDEFGHIJKLMabcdefghijklm")
 
     def __init__(self, fortune_files, fortune_index_file=None, verbose=False, force_update=False):
@@ -42,9 +42,9 @@ class Fortune(object):
             md5 = hashlib.md5()
             for file in sorted(self.fortune_files):
                 md5.update(file.encode('utf-8'))
-            fortune_index_file = os.path.expanduser(os.path.join('~', '.fortune', md5.hexdigest() + '.dat'))
+            fortune_index_file = os.path.expanduser(os.path.join('~', '.fortunate', md5.hexdigest() + '.dat'))
             try:
-                os.makedirs(os.path.expanduser(os.path.join('~', '.fortune')))
+                os.makedirs(os.path.expanduser(os.path.join('~', '.fortunate')))
             except OSError:
                 pass
         self.fortune_index_file = fortune_index_file
@@ -179,7 +179,7 @@ def main():
         if options.show_version:
             print("fortune, version %s" % __version__)
         else:
-            generator = Fortune(fortune_files, verbose=options.verbose, force_update=options.update)
+            generator = Fortunate(fortune_files, verbose=options.verbose, force_update=options.update)
             for _ in range(options.num):
                 sys.stdout.write(generator())
     except ValueError as msg:
