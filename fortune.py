@@ -24,6 +24,9 @@ __copyright__ = '2018 German Mendez Bravo (Kronuz), 2008-2011 Brian M. Clapper'
 __license__ = 'BSD-style license'
 
 
+FORTUNE_FILE = os.path.join(os.path.dirname(__file__), 'fortunes')
+
+
 class Fortune(object):
     rot13 = string.maketrans("ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz", "NOPQRSTUVWXYZnopqrstuvwxyzABCDEFGHIJKLMabcdefghijklm")
 
@@ -162,13 +165,14 @@ def main():
             fortune_files = os.environ['FORTUNE_FILE'].split(':')
         except KeyError:
             if os.path.isdir('/usr/local/share/games/fortunes'):
-                fortune_files = '/usr/local/share/games/fortunes'
+                fortune_files = ['/usr/local/share/games/fortunes']
             elif os.path.isdir('/usr/share/games/fortunes'):
-                fortune_files = '/usr/share/games/fortunes'
-            elif os.path.exists('fortunes'):
-                fortune_files = ['fortunes']
+                fortune_files = ['/usr/share/games/fortunes']
+            elif os.path.exists(FORTUNE_FILE):
+                fortune_files = []
             else:
                 arg_parser.error("Missing fortune file.")
+            fortune_files.append(FORTUNE_FILE)
 
     try:
         if options.show_version:
