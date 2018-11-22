@@ -5,6 +5,7 @@ import os
 import sys
 import random
 import hashlib
+import tempfile
 from optparse import OptionParser
 
 if sys.version_info[0] < 3:
@@ -124,8 +125,15 @@ class Fortunate(object):
                     longest = length if longest is None else max(longest, length)
                     fortunes.add(fortune)
 
-        with open(self.fortune_index_file, 'wb') as index_file:
-            pickle.dump(self._index, index_file, 0)
+        index_fd, index_filename = tempfile.mkstemp(dir=os.path.expanduser(os.path.join('~', '.fortunate')))
+        try:
+            with os.fdopen(index_fd, 'w') as index_file:
+                pickle.dump(self._index, index_file, 0)
+        except Exception:
+            os.remove(index_filename)
+            raise
+        else:
+            os.rename(index_filename, self.fortune_index_file)
 
         if self.verbose:
             print("Updated %d fortunes.\nLongest: %d\nShortest: %d\nDuplicates: %d" %
