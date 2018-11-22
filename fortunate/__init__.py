@@ -18,7 +18,7 @@ else:
 
 __all__ = ['Fortunate']
 
-__version__ = "1.2.0"
+__version__ = "1.3.0"
 __author__ = "German Mendez Bravo (Kronuz), Brian M. Clapper"
 __email__ = "german.mb@gmail.com, bmc@clapper.org"
 __url__ = "https://github.com/Kronuz/fortunate"
