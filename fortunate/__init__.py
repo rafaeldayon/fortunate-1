@@ -32,8 +32,10 @@ FORTUNE_FILE = os.path.join(os.path.dirname(__file__), 'fortunes')
 class Fortunate(object):
     rot13 = string.maketrans("ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz", "NOPQRSTUVWXYZnopqrstuvwxyzABCDEFGHIJKLMabcdefghijklm")
 
-    def __init__(self, fortune_files, fortune_index_file=None, verbose=False, force_update=False):
-        if isinstance(fortune_files, (list, tuple)):
+    def __init__(self, fortune_files=None, fortune_index_file=None, verbose=False, force_update=False):
+        if fortune_files is None:
+            self.fortune_files = set([FORTUNE_FILE])
+        elif isinstance(fortune_files, (list, tuple)):
             self.fortune_files = set(fortune_files)
         else:
             self.fortune_files = set([fortune_files])
