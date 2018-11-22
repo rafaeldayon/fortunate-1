@@ -57,6 +57,8 @@ class Fortunate(object):
             self._fortunes = {}
         try:
             fortune_file = self._fortunes[filename]
+            if fortune_file.closed:
+                raise KeyError
         except KeyError:
             fortune_file = self._fortunes[filename] = open(filename, 'r')
         return fortune_file
