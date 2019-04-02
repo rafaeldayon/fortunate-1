@@ -6,6 +6,7 @@ import sys
 import random
 import hashlib
 import tempfile
+import threading
 from optparse import OptionParser
 
 if sys.version_info[0] < 3:
@@ -30,6 +31,7 @@ FORTUNE_FILE = os.path.join(os.path.dirname(__file__), 'fortunes')
 
 
 class Fortunate(object):
+    lock = threading.Lock()
     rot13 = string.maketrans("ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz", "NOPQRSTUVWXYZnopqrstuvwxyzABCDEFGHIJKLMabcdefghijklm")
 
     def __init__(self, fortune_files=None, fortune_index_file=None, verbose=False, force_update=False):
@@ -144,10 +146,12 @@ class Fortunate(object):
                 (len(self._index), longest, shortest, duplicates))
 
     def __call__(self):
-        filename, start, length, rotated = self.fortune_index[random.randint(0, len(self.fortune_index) - 1)]
-        fortune_file = self.fortune_file(filename)
-        fortune_file.seek(start)
-        fortune = fortune_file.read(length)
+        with Fortunate.lock:
+            fortune_index = self.fortune_index
+            filename, start, length, rotated = random.choice(fortune_index)
+            fortune_file = self.fortune_file(filename)
+            fortune_file.seek(start)
+            fortune = fortune_file.read(length)
         if rotated:
             fortune = string.translate(fortune, self.rot13)
         return fortune
