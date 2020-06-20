@@ -133,7 +133,7 @@ class Fortunate(object):
 
         index_fd, index_filename = tempfile.mkstemp(dir=os.path.expanduser(os.path.join('~', '.fortunate')))
         try:
-            with os.fdopen(index_fd, 'w') as index_file:
+            with os.fdopen(index_fd, 'wb') as index_file:
                 pickle.dump(self._index, index_file, 0)
         except Exception:
             os.remove(index_filename)
